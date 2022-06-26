@@ -19,14 +19,29 @@ namespace BookManagerApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Book>> GetBooks()
         {
-            return _bookManagementService.GetAllBooks();
+            var books = _bookManagementService.GetAllBooks();
+            if (books == null || books.Count() == 0)
+                return NotFound("No books are currently present in the collection.");
+            return books;
         }
 
         // GET: api/v1/book/5
         [HttpGet("{id}")]
         public ActionResult<Book> GetBookById(long id)
         {
-            var book = _bookManagementService.FindBookById(id);
+            Book book = null;
+            try
+            {
+                book = _bookManagementService.FindBookById(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+            if(book == null)
+                return NotFound("The given book id does not exist. Please make sure you have the correct id and try again.");
+
             return book;
         }
 
@@ -35,8 +50,16 @@ namespace BookManagerApi.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBookById(long id, Book book)
         {
-            _bookManagementService.Update(id, book);
+            try
+            {
+                _bookManagementService.Update(id, book);
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
             return NoContent();
+            
         }
 
         // POST: api/v1/book
@@ -44,8 +67,26 @@ namespace BookManagerApi.Controllers
         [HttpPost]
         public ActionResult<Book> AddBook(Book book)
         {
-            _bookManagementService.Create(book);
+            try
+            {
+                _bookManagementService.Create(book);
+            }
+            catch(ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
             return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, book);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBookById(long id)
+        {
+            _bookManagementService.DeleteBookById(id);
+            return NoContent();
         }
     }
 }
