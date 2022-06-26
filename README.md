@@ -1,7 +1,7 @@
 # 📖 Minimalist Book Manager API - C# ASP.NET Core MVC Web API
 
-## Introduction
-This is the starter repository for the Further APIs session. It provides some starter code to creating a Minimalist Book Manager API with synchronous API endpoints.
+## What is it?
+A simple web API for a book manager that handles basic CRUD operations.
 
 ### Pre-Requisites
 - C# / .NET 6
@@ -12,40 +12,29 @@ This is the starter repository for the Further APIs session. It provides some st
 - NUnit testing framework
 - Moq
 
-### How to Get Started
-- Fork this repo to your Github and then clone the forked version of this repo.
-
-### Main Entry Point
-- The Main Entry Point for the application is: [Program.cs](./BookManagerApi/Program.cs)
-
-### Running the Unit Tests
-- You can run the unit tests in Visual Studio, or you can go to your terminal and inside the root of this directory, run:
-
-`dotnet test`
-
-### Tasks
-
-Here are some tasks for you to work on:
-
-📘 Discussion Task
-
-Explore the code and make notes on the following features and how it is being implemented in the code. We'd like you to note down what classes and methods are used and how the objects interact.
-
-The features are:
-- Get All Books
-- Get a Book by ID
-- Add a Book
-- Update a Book
-
-📘 Task 1: Implement the following User Story with tests.
-
-`User Story: As a user, I want to use the Book Manager API to delete a book using its ID`
+### Operations
+- Get all books in the collection
 
 
-📘 Extension Task: Oh no! 😭 We've only covered the happy paths in the solution, can you figure out a way
-to add in exception handling to the project? 
+  ![image](https://user-images.githubusercontent.com/87147382/175823111-45f6b8a5-e4a7-40a9-a018-8339ee9ca76b.png)
 
-- Clue 1: What if someone wants to add a book with an ID for a book that already exists? How do we handle this gracefully?
+- Add a new book to the collectiong
 
-- Clue 2: What if someone wants to find a book by an ID that doesn't yet exist? 
-  How can we improve the API by handling errors gracefully and show a helpful message to the client?
+
+  ![image](https://user-images.githubusercontent.com/87147382/175823174-7ecfdf08-272a-49e7-87bb-1f35b32b88b5.png)
+  
+- Get a book by its ID
+
+
+  ![image](https://user-images.githubusercontent.com/87147382/175823211-4ce6e0fb-7222-4db0-bbfc-981dab1a74ed.png)
+
+- Update a book by its ID
+
+
+  ![image](https://user-images.githubusercontent.com/87147382/175823242-8f271959-a39c-4267-b331-69a51472c661.png)
+
+- Delete a book by its ID
+
+
+  ![image](https://user-images.githubusercontent.com/87147382/175823258-6e9fa750-dd03-439e-8c09-1d0852ec8a3f.png)
+
