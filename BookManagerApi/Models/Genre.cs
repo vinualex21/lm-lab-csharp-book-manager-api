@@ -9,6 +9,7 @@ namespace BookManagerApi.Models
         Romance,
         Fantasy,
         Fiction,
+        Horror,
         Education,
     }
 }
