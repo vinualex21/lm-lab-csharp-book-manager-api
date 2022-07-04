@@ -133,7 +133,23 @@ public class BookManagerControllerTests
         var result = _controller.AddBook(newBook);
 
         //Assert
-        result.Should().BeOfType(typeof(ActionResult<Book>));
+        result.Should().BeOfType(typeof(CreatedAtActionResult));
+        result.As<CreatedAtActionResult>().Value.As<Book>().Should().Be(newBook);
+    }
+
+    [Test]
+    public void AddBookThatAlreadyExists_ReturnsBadRequest()
+    {
+        //Arrange
+        var newBook = new Book() { Id = 4, Title = "Book Four", Description = "This is the description for Book Four", Author = "Person Four", Genre = Genre.Education };
+
+        _mockBookManagementService.Setup(b => b.Create(newBook)).Throws<ArgumentException>();
+
+        //Act
+        var result = _controller.AddBook(newBook);
+
+        //Assert
+        result.Should().BeOfType(typeof(BadRequestObjectResult));
     }
 
     [Test]

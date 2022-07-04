@@ -65,7 +65,7 @@ namespace BookManagerApi.Controllers
         // POST: api/v1/book
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public ActionResult<Book> AddBook(Book book)
+        public IActionResult AddBook(Book book)
         {
             try
             {
